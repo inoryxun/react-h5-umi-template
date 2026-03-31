@@ -1,4 +1,6 @@
-import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
+import type {
+  AxiosInstance, AxiosRequestConfig, AxiosResponse
+} from 'axios'
 import { Toast } from 'antd-mobile'
 import axios from 'axios'
 import { handleError } from './errorHandler'

@@ -83,12 +83,16 @@ export default defineConfig({
     // 例如：className={`text-${color}-500`}
   ],
 
-  // 排除的文件
-  exclude: [
-    'node_modules',
-    '.git',
-    'dist',
-    '.umi',
-    '.umi-production',
-  ],
+  // 内容配置
+  content: {
+    pipeline: {
+      exclude: [
+        'node_modules',
+        '.git',
+        'dist',
+        '.umi',
+        '.umi-production',
+      ],
+    },
+  },
 })
