@@ -1,0 +1,115 @@
+/**
+ * 全局样式 Mixins
+ */
+
+// Flexbox 居中
+.flex-center() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Flexbox 垂直居中
+.flex-align-center() {
+  display: flex;
+  align-items: center;
+}
+
+// Flexbox 水平居中
+.flex-justify-center() {
+  display: flex;
+  justify-content: center;
+}
+
+// Flexbox 两端对齐
+.flex-between() {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// 文本溢出省略
+.ellipsis(@lines: 1) when (@lines = 1) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ellipsis(@lines) when (@lines > 1) {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: @lines;
+  -webkit-box-orient: vertical;
+}
+
+// 1px 边框问题解决
+.hairline-border(@color: #ebedf0, @position: all) when (@position = all) {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    border: 1px solid @color;
+    transform: scale(0.5);
+    transform-origin: 0 0;
+    pointer-events: none;
+  }
+}
+
+.hairline-border(@color, @position) when (@position = top) {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 1px;
+    background-color: @color;
+    transform: scaleY(0.5);
+    transform-origin: 0 0;
+    pointer-events: none;
+  }
+}
+
+.hairline-border(@color, @position) when (@position = bottom) {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%;
+    height: 1px;
+    background-color: @color;
+    transform: scaleY(0.5);
+    transform-origin: 0 100%;
+    pointer-events: none;
+  }
+}
+
+// 清除浮动
+.clearfix() {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+// 隐藏滚动条
+.hide-scrollbar() {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "name": "react-h5-umi-template",
+  "version": "1.0.0",
+  "private": true,
+  "description": "基于 Umi 4 + Vite + React 的 H5 项目模板",
+  "author": "inory <inoryxun@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:inoryxun/react-h5-umi-template.git"
+  },
+  "homepage": "https://github.com/inoryxun/react-h5-umi-template#readme",
+  "bugs": {
+    "url": "https://github.com/inoryxun/react-h5-umi-template/issues"
+  },
+  "keywords": [
+    "react",
+    "umi",
+    "vite",
+    "h5",
+    "mobile",
+    "antd-mobile",
+    "unocss",
+    "zustand",
+    "typescript",
+    "template"
+  ],
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "scripts": {
+    "dev": "umi dev",
+    "build": "umi build",
+    "build:analyze": "ANALYZE=1 umi build",
+    "postinstall": "umi setup",
+    "setup": "umi setup",
+    "start": "npm run dev",
+    "preview": "umi preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "antd-mobile": "^5.37.1",
+    "antd-mobile-icons": "^0.3.0",
+    "axios": "^1.6.8",
+    "dayjs": "^1.11.10",
+    "immer": "^10.0.4",
+    "qs": "^6.12.1",
+    "umi": "^4.6.35",
+    "vconsole": "^3.15.1",
+    "zustand": "^4.5.2"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^7.7.3",
+    "@eslint-react/eslint-plugin": "^3.0.0",
+    "@types/qs": "^6.9.15",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@unocss/eslint-plugin": "^66.6.7",
+    "@unocss/preset-icons": "^66.6.7",
+    "@unocss/preset-wind": "^66.6.7",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^9.39.4",
+    "eslint-plugin-format": "^2.0.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "less-loader": "^12.3.2",
+    "postcss": "8.4.31",
+    "postcss-px-to-viewport-8-plugin": "^1.2.5",
+    "typescript": "^5.4.5",
+    "unocss": "^66.6.7"
+  },
+  "pnpm": {
+    "overrides": {
+      "postcss": "8.4.31",
+      "less-loader": "12.3.2",
+      "eslint": "9.39.4",
+      "@eslint-react/eslint-plugin": "2.13.0",
+      "@humanwhocodes/config-array": "0.14.0",
+      "@humanwhocodes/object-schema": "2.1.0",
+      "glob": "11.0.0",
+      "rimraf": "6.0.1"
+    }
+  }
+}

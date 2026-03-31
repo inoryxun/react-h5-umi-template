@@ -1,0 +1,65 @@
+@import '@/styles/variables.less';
+
+.page {
+  min-height: 100%;
+  background-color: @bg-color;
+
+  .header {
+    padding: @spacing-xl;
+    text-align: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    h2 {
+      margin-top: @spacing-md;
+      font-size: @font-size-lg;
+      font-weight: bold;
+      color: white;
+    }
+
+    p {
+      margin-top: @spacing-sm;
+      font-size: @font-size-sm;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    :global {
+      .adm-button {
+        margin-top: @spacing-md;
+        width: 120px;
+      }
+    }
+  }
+
+  .content {
+    padding: @spacing-lg;
+
+    :global {
+      .adm-card {
+        margin-bottom: @spacing-lg;
+      }
+    }
+  }
+
+  .buttonGroup {
+    margin-top: @spacing-lg;
+  }
+}

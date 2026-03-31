@@ -1,0 +1,27 @@
+@import '@/styles/variables.less';
+
+.page {
+  min-height: 100vh;
+  background-color: @bg-color-white;
+
+  .header {
+    padding: 60px @spacing-xl @spacing-xl;
+    text-align: center;
+
+    h1 {
+      font-size: 28px;
+      font-weight: bold;
+      color: @text-color;
+    }
+
+    p {
+      margin-top: @spacing-sm;
+      font-size: @font-size-base;
+      color: @text-color-secondary;
+    }
+  }
+
+  .form {
+    padding: 0 @spacing-xl;
+  }
+}
