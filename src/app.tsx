@@ -21,14 +21,3 @@ export function rootContainer(container: React.ReactNode) {
     </ConfigProvider>
   )
 }
-
-/**
- * 布局配置
- */
-export function layout() {
-  return {
-    // 禁用默认 layout
-    pure: true,
-  }
-}
-// Test comment

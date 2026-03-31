@@ -20,6 +20,7 @@ export default defineConfig({
       component: '@/layouts/BasicLayout',
       routes: [
         { path: '/', component: '@/pages/Home' },
+        { path: '/list', component: '@/pages/List' },
         { path: '/user', component: '@/pages/User' },
         { path: '/uno-example', component: '@/pages/UnoExample' },
       ],

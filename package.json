@@ -1,6 +1,6 @@
 {
   "name": "react-h5-umi-template",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "基于 Umi 4 + Vite + React 的 H5 项目模板",
   "author": "inory <inoryxun@gmail.com>",
