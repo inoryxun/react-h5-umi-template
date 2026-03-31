@@ -34,7 +34,7 @@ export default antfu({
     'react-hooks/exhaustive-deps': 'warn',
 
     // TypeScript 相关
-    'ts/no-explicit-any': 'warn',
+    'ts/no-explicit-any': 'off', // 通用工具函数允许使用 any
     'ts/no-unused-vars': ['warn', {
       argsIgnorePattern: '^_',
       varsIgnorePattern: '^_',

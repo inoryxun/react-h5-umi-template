@@ -41,17 +41,14 @@ export function handleError(error: any) {
           content: data?.message || '请求失败，请稍后重试',
         })
     }
-  }
-  // 请求超时
-  else if (error.code === 'ECONNABORTED') {
+  } else if (error.code === 'ECONNABORTED') {
+    // 请求超时
     Toast.show({ icon: 'fail', content: '请求超时，请检查网络' })
-  }
-  // 网络断开
-  else if (!window.navigator.onLine) {
+  } else if (!window.navigator.onLine) {
+    // 网络断开
     Toast.show({ icon: 'fail', content: '网络连接已断开' })
-  }
-  // 其他错误
-  else {
+  } else {
+    // 其他错误
     Toast.show({ icon: 'fail', content: error.message || '网络错误，请稍后重试' })
   }
 }
