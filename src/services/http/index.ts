@@ -1,5 +1,7 @@
 import type {
-  AxiosInstance, AxiosRequestConfig, AxiosResponse
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
 } from 'axios'
 import { Toast } from 'antd-mobile'
 import axios from 'axios'

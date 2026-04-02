@@ -1,7 +1,6 @@
 ---
 name: umi-h5-state
-description: Umi H5 项目状态管理规范 - Zustand + TypeScript
-tags: [Zustand, State, TypeScript, Store]
+description: Umi H5 项目状态管理规范 - Zustand + TypeScript。MUST be used when creating stores in stores/ directory or managing global state. Always use Zustand with immer middleware.
 ---
 
 # Umi H5 状态管理规范

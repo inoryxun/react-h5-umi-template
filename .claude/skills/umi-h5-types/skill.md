@@ -1,7 +1,6 @@
 ---
 name: umi-h5-types
-description: Umi H5 项目 TypeScript 类型定义规范 - 全局类型声明
-tags: [TypeScript, Types, Interface, Declaration]
+description: Umi H5 项目 TypeScript 类型定义规范 - 全局类型声明。MUST be used when defining interface/type in any file, creating .d.ts files, or working with types/ directory. Component types should be in component folder's .d.ts file.
 ---
 
 # Umi H5 TypeScript 类型定义规范
@@ -16,8 +15,11 @@ tags: [TypeScript, Types, Interface, Declaration]
 - ✅ **`.d.ts` 文件中的类型自动全局可用**
 - ✅ **不需要 `export` 导出，不需要 `import` 导入**
 - ✅ **按模块/功能划分不同的 `.d.ts` 文件**
+- ⚠️ **关键规则：`.d.ts` 文件如果有 `import`，必须使用 `declare global` 包裹类型**
 
 ## 📁 类型文件组织
+
+### 全局类型
 
 ```
 src/types/
@@ -28,9 +30,54 @@ src/types/
 └── common.d.ts      # 公共类型
 ```
 
+### 组件类型
+
+⚠️ **重要规范**：组件的 interface/type 应该在组件文件夹里创建 `type.d.ts` 文件
+
+#### 标准组件结构
+
+```
+src/components/
+└── UserCard/
+    ├── index.tsx       # 组件入口文件 ✅
+    ├── index.less      # 组件样式
+    └── type.d.ts       # 组件类型定义 ✅
+```
+
+#### 复杂组件结构（多个子组件）
+
+```
+src/components/
+└── Questionnaire/
+    ├── index.ts              # 统一导出
+    ├── QuestionTitle.tsx     # 子组件（扁平，无嵌套）
+    ├── QuestionInput.tsx     # 子组件
+    └── type.d.ts             # 共享类型定义
+```
+
+**关键原则**：
+- ✅ 子组件直接放在父组件文件夹内，不再嵌套子文件夹
+- ✅ 保持结构扁平，避免过度嵌套
+- ✅ 一个 `type.d.ts` 定义所有相关类型
+
+#### 命名规范
+
+- ✅ 组件入口文件：`index.tsx`
+- ✅ 组件类型文件：`type.d.ts`
+- ✅ 组件样式文件：`index.less` 或 `index.module.less`
+
+**优点**：
+- ✅ 统一的命名规范，易于查找
+- ✅ 类型定义与组件就近放置，便于维护
+- ✅ 类型自动全局可用，无需 import
+- ✅ 多个子组件可以共享父文件夹内的 `type.d.ts`
+- ✅ 避免组件文件过长，提高可读性
+
 ## 📝 类型定义规范
 
-### 1. 全局类型（`.d.ts` 文件）
+### 1. 全局类型（`src/types/*.d.ts` 文件）
+
+#### 方式一：纯声明文件（无 import）✅ 推荐
 
 ```typescript
 // src/types/user.d.ts
@@ -63,7 +110,97 @@ interface LoginResponse {
 - ✅ 类型自动全局可用
 - ✅ 添加 JSDoc 注释
 
-### 2. 在代码中使用
+#### 方式二：有 import 的声明文件 ⚠️ 必须用 declare global
+
+当 `.d.ts` 文件需要导入其他类型时，**必须使用 `declare global` 包裹**：
+
+```typescript
+// src/types/questionnaire.d.ts
+import type {
+  QuestionTypeEnum,
+  OptionTypeEnum,
+} from '@/enums/questionnaire.enum'
+
+declare global {
+  /** 问卷表单 */
+  interface IQuestionnaireForm {
+    id: string
+    formName: string
+    questionType: QuestionTypeEnum
+  }
+
+  /** 问题选项 */
+  interface IQuestionOption {
+    id: string
+    optionName: string
+    optionType: OptionTypeEnum
+  }
+}
+
+export {}  // 必须添加，使文件成为模块
+```
+
+**为什么需要 `declare global`？**
+
+- 没有 import/export → 文件是**全局脚本**，类型自动全局
+- 有 import/export → 文件是**模块**，需要 `declare global` 才能声明全局类型
+
+### 2. 组件类型（组件文件夹内的 `type.d.ts` 文件）⭐️
+
+⚠️ **重要规范**：组件的 Props/State 类型应该在组件文件夹里创建 `type.d.ts` 文件
+
+```typescript
+// src/components/QuestionTitle/type.d.ts
+import type { ReactNode } from 'react'
+
+declare global {
+  /** 问卷标题组件 Props */
+  interface QuestionTitleProps {
+    /** 标题类型 */
+    type?: 'questionnaire' | 'main' | 'option' | 'matrixOption'
+    /** 数据 */
+    value: IQuestionnaireForm | IQuestion | IQuestionOption | IMatrix
+    /** 是否高亮（错误状态） */
+    isHighlight?: boolean
+    /** 自定义 ID */
+    id?: string
+    /** 子元素 */
+    children?: ReactNode
+  }
+}
+
+export {}
+```
+
+然后在组件中直接使用：
+
+```typescript
+// src/components/QuestionTitle/index.tsx
+import type { FC } from 'react'
+// 无需 import QuestionTitleProps，自动全局可用 ✅
+
+export const QuestionTitle: FC<QuestionTitleProps> = ({
+  type = 'main',
+  value,
+  isHighlight = false,
+  id,
+  children,
+}) => {
+  // 组件实现
+}
+```
+
+**优点**：
+
+- ✅ 统一的命名规范：`type.d.ts`
+- ✅ 组件入口统一：`index.tsx`
+- ✅ 类型定义与组件就近，便于维护
+- ✅ 避免组件文件过长
+- ✅ 类型自动全局可用，无需 import
+- ✅ 多个子组件可共享父文件夹内的类型
+- ✅ 提高代码可读性和可维护性
+
+### 3. 在代码中使用
 
 ```typescript
 // src/services/modules/user.ts

@@ -1,7 +1,6 @@
 ---
 name: umi-h5-component
-description: Umi H5 项目组件开发规范 - React + TypeScript + antd-mobile + UnoCSS
-tags: [React, TypeScript, Umi, H5, Mobile, Component]
+description: Umi H5 项目组件开发规范 - React + TypeScript + antd-mobile + UnoCSS。MUST be used when creating or modifying React components in components/ or pages/ directories. Always follow FC pattern with TypeScript.
 ---
 
 # Umi H5 组件开发规范
@@ -27,24 +26,46 @@ tags: [React, TypeScript, Umi, H5, Mobile, Component]
 
 ## 📁 组件结构
 
+### 标准组件结构
+
 ```
 src/
 ├── types/                   # 全局类型定义
-│   ├── components.d.ts      # 通用组件 Props
-│   └── pages.d.ts           # 页面组件 Props（可选）
+│   ├── questionnaire.d.ts   # 问卷相关全局类型
+│   └── common.d.ts          # 公共全局类型
 ├── pages/PageName/          # 页面组件（PascalCase）
-│   ├── index.tsx
-│   └── index.less           # 可选，优先用 UnoCSS
-└── components/MyComponent/  # 通用组件
-    ├── index.tsx
-    └── index.less
+│   ├── index.tsx            # ✅ 页面入口文件
+│   ├── type.d.ts            # ✅ 页面类型定义（可选）
+│   └── index.less           # 样式文件（可选，优先用 UnoCSS）
+└── components/              # 通用组件
+    └── MyComponent/
+        ├── index.tsx        # ✅ 组件入口文件
+        ├── type.d.ts        # ✅ 组件类型定义
+        └── index.less       # 样式文件（可选）
 ```
+
+### 复杂组件结构（多个子组件）⭐️
+
+```
+src/components/Questionnaire/
+├── index.ts                 # 统一导出
+├── QuestionTitle.tsx        # 子组件（扁平化，无嵌套文件夹）
+├── QuestionInput.tsx        # 子组件
+└── type.d.ts                # 所有组件共享的类型定义
+```
+
+**为什么不嵌套子文件夹？**
+- ❌ 避免过度嵌套：`Questionnaire/QuestionTitle/index.tsx`
+- ✅ 保持扁平：`Questionnaire/QuestionTitle.tsx`
+- ✅ 更易导航和维护
 
 ⚠️ **类型定义规范**：
 
-- ✅ 通用组件 Props → `src/types/components.d.ts`（全局类型）
-- ✅ 页面级组件 Props → 可在组件文件内定义（局部类型）
-- ❌ 不再使用 `types.ts` 文件（改用 `.d.ts`）
+- ✅ 全局通用类型 → `src/types/*.d.ts`（多个文件共用）
+- ✅ 组件专属类型 → 组件文件夹内的 `type.d.ts`（仅该组件使用）
+- ✅ 组件入口文件 → 统一命名为 `index.tsx`
+- ✅ 类型文件 → 统一命名为 `type.d.ts`
+- ❌ 不使用 `ComponentName.tsx`、`ComponentName.d.ts` 等命名
 
 ## 🎨 组件模板
 

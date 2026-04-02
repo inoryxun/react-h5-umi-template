@@ -1,7 +1,6 @@
 ---
 name: umi-h5-style
-description: Umi H5 项目样式规范 - UnoCSS + Less + 移动端适配
-tags: [UnoCSS, Less, CSS, Mobile, Style]
+description: Umi H5 项目样式规范 - UnoCSS + Less + 移动端适配。MUST be used when writing styles, className, or creating .less files. Always prefer UnoCSS utilities over custom CSS.
 ---
 
 # Umi H5 样式规范

@@ -1,7 +1,6 @@
 ---
 name: umi-h5-workflow
-description: Umi H5 项目开发工作流程 - 从需求到上线的完整流程
-tags: [Workflow, Umi, H5, Development, Process]
+description: Umi H5 项目开发工作流程 - 从需求到上线的完整流程。MUST be used when developing new features or fixing bugs. Always follow the 6-stage workflow and run checks after code changes.
 ---
 
 # Umi H5 项目开发工作流程

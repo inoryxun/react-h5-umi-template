@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Edit(.claude/skills/**)",
+      "Read(.claude/skills/**)"
+    ],
+    "additionalDirectories": [
+      ".claude/skills"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "if": "Edit(src/**/*.{ts,tsx,js,jsx})",
+            "command": "echo '🔍 Running lint and type-check...' && pnpm run lint && pnpm run type-check && echo '✅ Code quality checks passed!'",
+            "statusMessage": "Running code quality checks..."
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "if": "Write(src/**/*.{ts,tsx,js,jsx})",
+            "command": "echo '🔍 Running lint and type-check...' && pnpm run lint && pnpm run type-check && echo '✅ Code quality checks passed!'",
+            "statusMessage": "Running code quality checks..."
+          }
+        ]
+      }
+    ]
+  }
+}

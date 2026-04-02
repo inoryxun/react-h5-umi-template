@@ -32,6 +32,7 @@ export default antfu({
     'react/prefer-destructuring-assignment': 'off',
     'react-refresh/only-export-components': 'off',
     'react-hooks/exhaustive-deps': 'warn',
+    'react-dom/no-dangerously-set-innerhtml': 'off', // 使用 DOMPurify 净化后安全
 
     // TypeScript 相关
     'ts/no-explicit-any': 'off', // 通用工具函数允许使用 any
