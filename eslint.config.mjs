@@ -42,7 +42,7 @@ export default antfu({
     }],
 
     // 通用规则
-    'no-console': ['warn', { allow: ['warn', 'error'] }],
+    'no-console': 'off',
     'unused-imports/no-unused-imports': 'error',
     'antfu/if-newline': 'off',
     'style/brace-style': ['error', '1tbs'],

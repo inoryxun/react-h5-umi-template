@@ -6,6 +6,7 @@ declare global {
     readonly VITE_APP_TITLE: string
     readonly VITE_APP_VERSION: string
     readonly VITE_API_BASE_URL: string
+    readonly VITE_APP_BASE_API: string
     readonly VITE_API_TIMEOUT: string
     readonly VITE_ENABLE_MOCK: string
     readonly VITE_ENABLE_VCONSOLE: string
@@ -16,4 +17,4 @@ declare global {
   }
 }
 
-export {}
+export { }
